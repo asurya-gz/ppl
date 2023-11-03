@@ -1,11 +1,9 @@
-import Image from "next/image";
-import Navbar from "./components/Navbar";
+import Login from "./components/Login";
 
 export default function Home() {
   return (
-    <div className="siap">
-      <Navbar />
-      <h1>Hallo Ini halaman utama</h1>
+    <div className="container w-full">
+      <Login />
     </div>
   );
 }
