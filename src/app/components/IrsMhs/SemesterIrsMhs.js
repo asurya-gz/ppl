@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function SemesterIrsMhs() {
   return (
-    <div className="boxdashboarddoswal bg-white bg-opacity-25 w-3/4 h-3/4 mt-10 ml-48 rounded-[20px] border-2">
+    <div className="irsmhs bg-white bg-opacity-25 w-3/4 h-3/4 mt-10 ml-48 rounded-[20px] border-2">
       <div className="container mb-14">
         <div className="namaopr text-center mr-20">
           <div className="nama ml-20">
