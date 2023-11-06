@@ -1,9 +1,43 @@
 "use client";
-
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 export default function Login() {
+  const inputStyle = {
+    color: "black",
+  };
+  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const validateEmail = (email) => {
+    // Format email regex
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return emailRegex.test(email);
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setEmailError("");
+    setPasswordError("");
+
+    if (!email) {
+      setEmailError("Email harus diisi");
+    } else if (!validateEmail(email)) {
+      setEmailError("Email tidak valid");
+    }
+    
+    if (!password) {
+      setPasswordError("Password harus diisi");
+    }
+
+    if(email && password) {
+       // logic login berhasil
+    }
+  };
+
   return (
     <div className="container h-screen w-full bg-[url('/img/login.png')] bg-no-repeat bg-cover">
       <div className="h-screen flex items-center justify-center">
@@ -17,9 +51,13 @@ export default function Login() {
                 </label>
                 <input
                   type="email"
+                  style={inputStyle}
                   className="w-full p-2 border rounded-md"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
+                <p className="text-red-500">{emailError}</p>
               </div>
               <div className="mb-8">
                 <label className="block text-white text-sm font-medium">
@@ -27,18 +65,21 @@ export default function Login() {
                 </label>
                 <input
                   type="password"
+                  style={inputStyle}
                   className="w-full p-2 border rounded-md"
                   placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
+                <p className="text-red-500">{passwordError}</p>
               </div>
-              <Link href="/DashboardOpr">
-                <button
-                  type="submit"
-                  className="w-full bg-[#BD0C47] text-white p-2 rounded-md hover:bg-blue-600"
-                >
-                  Login
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="w-full bg-[#BD0C47] text-white p-2 rounded-md hover:bg-blue-600"
+                onClick={handleLogin}
+              >
+                Login
+              </button>
             </form>
           </div>
         </div>
